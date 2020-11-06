@@ -13,14 +13,17 @@ COPY . /home/MyUser/vim-rf
 RUN cp /home/MyUser/vim-rf/vimrc /home/MyUser/.vimrc
 
 RUN mkdir -p /home/MyUser/.vim/pack/plugins/start
-# RUN git clone --branch branch repository /home/MyUser/.vim/pack/plugins/start/coc.nvim
 
 RUN mkdir /home/MyUser/.vim/syntax
 RUN mkdir /home/MyUser/.vim/ftdetect
+
+COPY . /home/MyUser/vim-rf
+RUN cp /home/MyUser/vim-rf/vimrc /home/MyUser/.vimrc
+
 RUN cp /home/MyUser/vim-rf/robot-syntax.vim /home/MyUser/.vim/syntax/robot.vim
 RUN cp /home/MyUser/vim-rf/robot-ftdetect.vim /home/MyUser/.vim/ftdetect/robot.vim
 
-RUN chmod 755 /home/MyUser
+# RUN chmod 755 /home/MyUser
 
 WORKDIR /home/MyUser/
 USER MyUser
