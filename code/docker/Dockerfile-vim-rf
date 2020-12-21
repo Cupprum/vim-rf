@@ -9,15 +9,13 @@ RUN useradd -ms /bin/bash MyUser
 RUN echo 'MyUser:test' | chpasswd 
 RUN echo 'MyUser ALL=(ALL:ALL) ALL' >> /etc/sudoers
 
-COPY . /home/MyUser/vim-rf
-RUN cp /home/MyUser/vim-rf/vimrc /home/MyUser/.vimrc
-
 RUN mkdir -p /home/MyUser/.vim/pack/plugins/start
 
 RUN mkdir /home/MyUser/.vim/syntax
 RUN mkdir /home/MyUser/.vim/ftdetect
 
-COPY . /home/MyUser/vim-rf
+COPY ./vim /home/MyUser/vim-rf
+COPY ./robot /home/MyUser/vim-rf
 RUN cp /home/MyUser/vim-rf/vimrc /home/MyUser/.vimrc
 
 RUN cp /home/MyUser/vim-rf/robot-syntax.vim /home/MyUser/.vim/syntax/robot.vim
@@ -25,5 +23,5 @@ RUN cp /home/MyUser/vim-rf/robot-ftdetect.vim /home/MyUser/.vim/ftdetect/robot.v
 
 # RUN chmod 755 /home/MyUser
 
-WORKDIR /home/MyUser/
+WORKDIR /home/MyUser/vim-rf
 USER MyUser
