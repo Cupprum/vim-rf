@@ -17,7 +17,7 @@ endfunction
 function! ale_linters#robot#rflint#GetCommand(buffer) abort
     let l:executable = ale_linters#robot#rflint#GetExecutable(a:buffer)
     let l:flags = '--no-filenames --format'
-    \ . ' "{linenumber}:{rulename}"'
+    \ . ' "{filename}:{severity}:{linenumber}:{char}:{rulename}:{message}"'
 
     let l:exec_args = l:executable =~? 'pipenv$'
     \   ? 'run rflint '
@@ -31,28 +31,20 @@ function! ale_linters#robot#rflint#GetCommand(buffer) abort
 endfunction
 
 function! ale_linters#robot#rflint#Handle(buffer, lines) abort
-    " let l:pattern = '^[[:alnum:][:punct:]]+:(W|E):[0-9]+:[0-9]+:[[:alnum:]]+:.+$'
-    let l:pattern = '\v^([0-9]+):(.*)$'
+    let l:pattern = '\v^([[:alnum:][:punct:]]+):(W|E):([[:digit:]]+):([[:digit:]]+):([[:alnum:]]+):(.*)$'
     let l:output = []
 
     for l:match in ale#util#GetMatches(a:lines, l:pattern)
-        " call add(l:output, {
-        " \   'bufnr': a:buffer,
-        " \   'filename': l:match[1],
-        " \   'type': l:match[2],
-        " \   'lnum': str2nr(l:match[3]),
-        " \   'col': str2nr(l:match[4]),
-        " \   'text': l:match[5],
-        " \   'detail': l:match[6],
-        " \})
-       
         call add(l:output, {
-        \   'lnum': str2nr(l:match[1]),
-        \   'text': l:match[2],
+        \   'bufnr': a:buffer,
+        \   'filename': l:match[1],
+        \   'type': l:match[2],
+        \   'lnum': str2nr(l:match[3]),
+        \   'col': str2nr(l:match[4]),
+        \   'text': l:match[5],
+        \   'detail': l:match[6],
         \})
     endfor
-
-    echom "test123"
 
     return l:output
 endfunction
