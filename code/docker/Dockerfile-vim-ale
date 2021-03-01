@@ -1,6 +1,6 @@
 # /* vim: set filetype=dockerfile : */
 
-FROM my-vim:latest
+FROM vimrobotframework/vim_base:latest
 MAINTAINER Samuel Branisa <branisa.samuel@icloud.com>
 
 RUN apt-get update && apt-get install -y git sudo
@@ -14,7 +14,7 @@ RUN git clone --depth 1 https://github.com/dense-analysis/ale.git /home/MyUser/.
 
 RUN python3 -m pip install --upgrade pip
 # RUN python3 -m pip install python-language-server flake8
-RUN python3 -m pip install jedi-language-server robotframework-lint
+RUN python3 -m pip install robotframework-lint
 
 RUN mkdir /home/MyUser/.vim/syntax
 RUN mkdir /home/MyUser/.vim/ftdetect
@@ -22,7 +22,6 @@ COPY ./vim/robot-syntax.vim /home/MyUser/.vim/syntax/robot.vim
 COPY ./vim/robot-ftdetect.vim /home/MyUser/.vim/ftdetect/robot.vim
 
 COPY ./vim/vimrc-ale /home/MyUser/.vimrc
-COPY ./python /home/MyUser/vim-ale
 COPY ./robot /home/MyUser/vim-ale
 COPY ./vim/rflint.vim /home/MyUser/.vim/pack/plugins/start/ale/ale_linters/robot/rflint.vim
 

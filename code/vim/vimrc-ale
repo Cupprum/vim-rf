@@ -56,5 +56,5 @@ endif
 syntax on
 let g:ale_completion_enabled = 1
 let g:ale_completion_delay = 0
-let g:ale_linters = {'python': ['jedils'], 'robot': ['rflint']}
+let g:ale_linters = {'robot': ['rflint']}
 let g:ale_hover_to_preview = 1
