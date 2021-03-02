@@ -3,17 +3,11 @@
 FROM vimrobotframework/vim_base:latest
 MAINTAINER Samuel Branisa <branisa.samuel@icloud.com>
 
-RUN apt-get update && apt-get install -y git sudo
+RUN mkdir -p ${USER_HOME}/.vim/pack/plugins/start
 
-RUN useradd -ms /bin/bash MyUser
-RUN echo 'MyUser:test' | chpasswd 
-RUN echo 'MyUser ALL=(ALL:ALL) ALL' >> /etc/sudoers
-
-RUN mkdir -p /home/MyUser/.vim/pack/plugins/start
 RUN git clone --depth 1 https://github.com/dense-analysis/ale.git /home/MyUser/.vim/pack/plugins/start/ale
 
 RUN python3 -m pip install --upgrade pip
-# RUN python3 -m pip install python-language-server flake8
 RUN python3 -m pip install robotframework-lint
 
 RUN mkdir /home/MyUser/.vim/syntax

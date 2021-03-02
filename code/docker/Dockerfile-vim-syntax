@@ -1,46 +1,17 @@
 # /* vim: set filetype=dockerfile : */
 
-FROM my-vim:latest
+FROM vimrobotframework/vim_base:latest
 MAINTAINER Samuel Branisa <branisa.samuel@icloud.com>
 
-RUN apt-get update && apt-get install -y git
-
-# RUN useradd -ms /bin/bash MyUser
-# RUN echo 'MyUser:test' | chpasswd 
-# RUN echo 'MyUser ALL=(ALL:ALL) ALL' >> /etc/sudoers
-# 
-# RUN mkdir -p /home/MyUser/.vim/pack/plugins/start
-# 
-# RUN mkdir /home/MyUser/.vim/syntax
-# RUN mkdir /home/MyUser/.vim/ftdetect
-# 
-# COPY ./vim /home/MyUser/vim-rf
-# COPY ./robot /home/MyUser/vim-rf
-# RUN cp /home/MyUser/vim-rf/vimrc /home/MyUser/.vimrc
-# 
-# RUN cp /home/MyUser/vim-rf/robot-syntax.vim /home/MyUser/.vim/syntax/robot.vim
-# RUN cp /home/MyUser/vim-rf/robot-ftdetect.vim /home/MyUser/.vim/ftdetect/robot.vim
-# 
-# # RUN chmod 755 /home/MyUser
-# 
-# WORKDIR /home/MyUser/vim-rf
-# USER MyUser
-
-
 USER root
-RUN mkdir -p ${USER_HOME}/.vim/pack/plugins/start
 
-RUN mkdir ${USER_HOME}/.vim/syntax
-RUN mkdir ${USER_HOME}/.vim/ftdetect
+WORKDIR ${USER_HOME}/vim_robotframework
+COPY ./robot .
+COPY ./vim .
+RUN cp ./vimrc ${USER_HOME}/.vimrc
 
-COPY ./vim ${USER_HOME}/vim-rf
-COPY ./robot ${USER_HOME}/vim-rf
-RUN cp ${USER_HOME}/vim-rf/vimrc ${USER_HOME}/.vimrc
+RUN cp ./robot-syntax.vim ${USER_HOME}/.vim/syntax/robot.vim
+RUN cp ./robot-ftdetect.vim ${USER_HOME}/.vim/ftdetect/robot.vim
 
-RUN cp ${USER_HOME}/vim-rf/robot-syntax.vim ${USER_HOME}/.vim/syntax/robot.vim
-RUN cp ${USER_HOME}/vim-rf/robot-ftdetect.vim ${USER_HOME}/.vim/ftdetect/robot.vim
-
-# RUN chmod 755 /home/MyUser
-
-WORKDIR ${USER_HOME}/vim-rf
+WORKDIR ${USER_HOME}/vim_robotframework
 USER ${USER}

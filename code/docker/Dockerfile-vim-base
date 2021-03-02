@@ -5,12 +5,15 @@ MAINTAINER Samuel Branisa <branisa.samuel@icloud.com>
 
 RUN apt-get update && apt-get install -y git build-essential libncurses5-dev libncursesw5-dev sudo
 
+# Compile Vim
 RUN git clone https://github.com/vim/vim.git /tmp/vim
 RUN make -C /tmp/vim
 RUN make install -C /tmp/vim
 
+# Clean
 RUN rm -rf /tmp/vim
 
+# Create user
 ARG USER=vim_robotframework
 ENV USER ${USER}
 RUN adduser ${USER} \
@@ -18,6 +21,11 @@ RUN adduser ${USER} \
 
 ENV USER_HOME /home/${USER}
 RUN chown -R ${USER}:${USER} ${USER_HOME}
+
+# Create vim folders for packages
+RUN mkdir -p ${USER_HOME}/.vim/pack/plugins/start
+RUN mkdir ${USER_HOME}/.vim/syntax
+RUN mkdir ${USER_HOME}/.vim/ftdetect
 
 WORKDIR ${USER_HOME}
 USER ${USER}
