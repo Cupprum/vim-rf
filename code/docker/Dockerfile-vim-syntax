@@ -8,10 +8,9 @@ USER root
 WORKDIR ${USER_HOME}/vim_robotframework
 COPY ./robot .
 COPY ./vim .
-RUN cp ./vimrc ${USER_HOME}/.vimrc
 
+RUN cp ./vimrc ${USER_HOME}/.vimrc
 RUN cp ./robot-syntax.vim ${USER_HOME}/.vim/syntax/robot.vim
 RUN cp ./robot-ftdetect.vim ${USER_HOME}/.vim/ftdetect/robot.vim
 
-WORKDIR ${USER_HOME}/vim_robotframework
 USER ${USER}
