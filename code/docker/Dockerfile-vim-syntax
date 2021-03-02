@@ -3,7 +3,7 @@
 FROM my-vim:latest
 MAINTAINER Samuel Branisa <branisa.samuel@icloud.com>
 
-RUN apt-get update && apt-get install -y git sudo
+RUN apt-get update && apt-get install -y git
 
 # RUN useradd -ms /bin/bash MyUser
 # RUN echo 'MyUser:test' | chpasswd 
