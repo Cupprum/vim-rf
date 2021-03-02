@@ -13,7 +13,7 @@ RUN rm -rf /tmp/vim
 
 ARG USER=vim_robotframework
 ENV USER ${USER}
-RUN adduser -D ${USER} \
+RUN adduser ${USER} \
       && echo "${USER}   ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 ENV USER_HOME /home/${USER}
