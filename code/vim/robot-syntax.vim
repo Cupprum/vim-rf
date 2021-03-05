@@ -8,8 +8,58 @@ if exists("b:current_syntax")
   finish
 endif
 
+" Constant
+" Special
+" Identifier
+" Statement
+" PreProc
+" Type
+
 " Sections
-syn match sections '^\*\*\* \(Settings\|Variables\|Test Cases\|Tasks\|Keywords\|Comments\) \*\*\*'
+syntax match sections '^\*\*\*[[:alpha:][:blank:]]\+\*\*\*'
+
+syntax match path '\(\.\|\)/[[:punct:][:alnum:][:punct:]]\+' contained
+
+syntax keyword and AND contained nextgroup=blank
+syntax match blank '[[:blank:]]\+' contained nextgroup=and,path,settingValue
+
+syntax match threeDotsImports '^\.\.\.' contained nextgroup=blank
+syntax match settingName '^\([[:alnum:]] \{0,1}\)\+' contained nextgroup=blank
+syntax match settingValue '\([[:alnum:]] \{0,1}\)\+' contained nextgroup=settingParams
+syntax match settingParams '.\+$' contained
+
+syntax region importsBorders start='^\*\*\* Settings \*\*\*' end='^\*\*\*[[:alpha:][:blank:]]\+\*\*\*' 
+    \ contains=settingName,sections,threeDotsImports keepend
+
+syntax match variableName '\([[:alnum:]_] \{0,1}\)\+' contained
+syntax region variable start='\(\$\|%\|@\){' end='}\(=\|\)' contains=variableName keepend
+
+
+syntax match threeDotsTestCases '\.\.\.' contained
+syntax match testCaseName '^\([[:alnum:]_] \{0,1}\)\+' contained
+syntax region testCaseBorders start='^\*\*\* Test Cases \*\*\*' end='\%$'
+    \ contains=testCaseName,sections,variable,threeDotsTestCases,strings
+
+syntax match strings '\".\+\"'
+
+highlight default link settingName          PreProc
+highlight default link threeDotsImports     PreProc
+highlight default link settingValue         Special
+highlight default link settingParams        Statement
+
+highlight default link path                 Constant
+highlight default link and                  Identifier
+
+highlight default link sections             Underlined
+
+highlight default link variable             Type
+highlight default link variableName         Constant
+
+highlight default link testCaseName         Special
+highlight default link threeDotsTestCases   Type
+highlight default link strings              Statement
+
+
 
 " " Settings
 " syn match multiSpace nextgroup=argument '[[:blank:]]\+' contained
@@ -136,10 +186,3 @@ syn match sections '^\*\*\* \(Settings\|Variables\|Test Cases\|Tasks\|Keywords\|
 " " * Screenshot
 " syn match testCases 'Set Screenshot Directory'
 " syn match testCases 'Take Screenshot\( Without Embedding\|\)'
-" 
-" hi def link sections        PreProc
-" hi def link settings        Type
-" " hi def link argument        Constant
-" hi def link word            Constant
-" hi def link testCases       Statement
-" 
