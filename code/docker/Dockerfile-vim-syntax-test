@@ -1,0 +1,22 @@
+# /* vim: set filetype=dockerfile : */
+
+FROM vimrobotframework/vim_base:latest
+MAINTAINER Samuel Branisa <branisa.samuel@icloud.com>
+
+USER root
+
+RUN git clone https://github.com/arp242/testing.vim /tmp/testing.vim
+RUN make install -C /tmp/testing.vim
+
+# Clean
+RUN rm -rf /tmp/testing.vim
+
+WORKDIR ${USER_HOME}/vim_robotframework
+COPY ./robot .
+COPY ./vim .
+
+RUN cp ./vimrc ${USER_HOME}/.vimrc
+RUN cp ./robot-syntax.vim ${USER_HOME}/.vim/syntax/robot.vim
+RUN cp ./robot-ftdetect.vim ${USER_HOME}/.vim/ftdetect/robot.vim
+
+# USER ${USER}
