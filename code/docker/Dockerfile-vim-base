@@ -22,10 +22,10 @@ RUN adduser ${USER} \
 ENV USER_HOME /home/${USER}
 RUN chown -R ${USER}:${USER} ${USER_HOME}
 
-# Create vim folders for packages
-RUN mkdir -p ${USER_HOME}/.vim/pack/plugins/start
-RUN mkdir ${USER_HOME}/.vim/syntax
-RUN mkdir ${USER_HOME}/.vim/ftdetect
-
-WORKDIR ${USER_HOME}
 USER ${USER}
+WORKDIR ${USER_HOME}
+
+# Create vim folders for packages
+RUN mkdir -p .vim/pack/plugins/start
+RUN mkdir .vim/syntax
+RUN mkdir .vim/ftdetect

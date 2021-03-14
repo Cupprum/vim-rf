@@ -3,20 +3,15 @@
 FROM vimrobotframework/vim_base:latest
 MAINTAINER Samuel Branisa <branisa.samuel@icloud.com>
 
-USER root
+ENV TEST_VIM="/usr/local/bin/vim"
+RUN git clone -q --depth 1 https://github.com/arp242/testing.vim.git ${USER_HOME}/testing.vim
 
-RUN git clone https://github.com/arp242/testing.vim /tmp/testing.vim
-RUN make install -C /tmp/testing.vim
+RUN mkdir plugin
+COPY ./robot ./plugin
+COPY ./vim ./vim
 
-# Clean
-RUN rm -rf /tmp/testing.vim
+RUN cp vim/vimrc ${USER_HOME}/.vimrc
+RUN cp vim/robot-syntax.vim ${USER_HOME}/.vim/syntax/robot.vim
+RUN cp vim/robot-ftdetect.vim ${USER_HOME}/.vim/ftdetect/robot.vim
 
-WORKDIR ${USER_HOME}/vim_robotframework
-COPY ./robot .
-COPY ./vim .
-
-RUN cp ./vimrc ${USER_HOME}/.vimrc
-RUN cp ./robot-syntax.vim ${USER_HOME}/.vim/syntax/robot.vim
-RUN cp ./robot-ftdetect.vim ${USER_HOME}/.vim/ftdetect/robot.vim
-
-# USER ${USER}
+RUN ${USER_HOME}/testing.vim/tvim gen-syn plugin/add_client_owners.robot > plugin/robot_test.vim

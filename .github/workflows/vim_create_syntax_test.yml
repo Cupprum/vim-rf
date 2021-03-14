@@ -1,0 +1,19 @@
+name: vim_create_syntax_test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Kaniko create syntax tests to Vim Base
+        uses: aevea/action-kaniko@master
+        with:
+          image: vimrobotframework/vim_base_syntax_test
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          build_file: code/docker/Dockerfile-vim-syntax-test
+          cache: true
+          cache_registry: vimrobotframework/vim_base_syntax_test_cache
