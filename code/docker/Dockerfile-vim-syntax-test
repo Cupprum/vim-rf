@@ -4,14 +4,16 @@ FROM vimrobotframework/vim_base:latest
 MAINTAINER Samuel Branisa <branisa.samuel@icloud.com>
 
 ENV TEST_VIM="/usr/local/bin/vim"
-RUN git clone -q --depth 1 https://github.com/arp242/testing.vim.git ${USER_HOME}/testing.vim
+RUN git clone -q --depth 1 https://github.com/arp242/testing.vim.git testing.vim
 
 RUN mkdir plugin
-COPY code/robot ./plugin
-COPY code/vim ./vim
+COPY code/robot plugin
+COPY code/vim vim
+# COPY ./robot plugin
+# COPY ./vim vim
 
-RUN cp vim/vimrc ${USER_HOME}/.vimrc
-RUN cp vim/robot-syntax.vim ${USER_HOME}/.vim/syntax/robot.vim
-RUN cp vim/robot-ftdetect.vim ${USER_HOME}/.vim/ftdetect/robot.vim
+RUN cp vim/vimrc .vimrc
+RUN cp vim/robot-syntax.vim .vim/syntax/robot.vim
+RUN cp vim/robot-ftdetect.vim .vim/ftdetect/robot.vim
 
-RUN ${USER_HOME}/testing.vim/tvim gen-syn plugin/add_client_owners.robot > plugin/robot_test.vim
+# RUN testing.vim/tvim gen-syn plugin/add_client_owners.robot > plugin/robot_test.vim
