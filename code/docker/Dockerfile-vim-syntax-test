@@ -7,8 +7,8 @@ ENV TEST_VIM="/usr/local/bin/vim"
 RUN git clone -q --depth 1 https://github.com/arp242/testing.vim.git ${USER_HOME}/testing.vim
 
 RUN mkdir plugin
-COPY ./robot ./plugin
-COPY ./vim ./vim
+COPY code/robot ./plugin
+COPY code/vim ./vim
 
 RUN cp vim/vimrc ${USER_HOME}/.vimrc
 RUN cp vim/robot-syntax.vim ${USER_HOME}/.vim/syntax/robot.vim
