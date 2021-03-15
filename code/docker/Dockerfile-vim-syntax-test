@@ -3,13 +3,10 @@
 FROM vimrobotframework/vim_base:latest
 MAINTAINER Samuel Branisa <branisa.samuel@icloud.com>
 
-ENV TEST_VIM="/usr/local/bin/vim"
 RUN git clone -q --depth 1 https://github.com/arp242/testing.vim.git testing.vim
 
 COPY code/robot plugin
 COPY code/vim vim
-# COPY ./robot plugin
-# COPY ./vim vim
 
 RUN sudo chown ${USER}: vim
 RUN sudo chown ${USER}: plugin
