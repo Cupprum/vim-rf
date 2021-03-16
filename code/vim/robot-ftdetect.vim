@@ -59,3 +59,18 @@ function! s:TestCase()
 endfunction
 
 command! RFTestCase call s:TestCase()
+
+" TEST CURRENT DIRECTORY
+function! s:TestDir()
+    let l:dir_path = expand('%:p:h')
+    let l:output = system('sudo robot ' . l:dir_path)
+
+    botright vnew
+    setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+
+    put = l:output
+
+    setlocal nomodifiable
+endfunction
+
+command! RFTestDir call s:TestDir()

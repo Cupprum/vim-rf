@@ -1,0 +1,26 @@
+# /* vim: set filetype=dockerfile : */
+
+FROM vimrobotframework/vim_base_syntax_test:latest
+MAINTAINER Samuel Branisa <branisa.samuel@icloud.com>
+
+RUN git clone --depth 1 https://github.com/dense-analysis/ale.git .vim/pack/plugins/start/ale
+RUN sudo python3 -m pip install --upgrade pip
+RUN sudo python3 -m pip install robotframework-lint robotframework-requests
+
+COPY code/robot robot
+COPY code/vim vim
+# COPY ./robot robot
+# COPY ./vim vim
+
+RUN mkdir -p .vim/pack/plugins/start/ale/ale_linters/robot
+RUN cp vim/rflint.vim .vim/pack/plugins/start/ale/ale_linters/robot/rflint.vim
+
+RUN sudo chown ${USER}: vim
+RUN sudo chown ${USER}: robot
+RUN cp vim/vimrc .vimrc
+RUN cp vim/robot-syntax.vim .vim/syntax/robot.vim
+RUN cp vim/robot-ftdetect.vim .vim/ftdetect/robot.vim
+
+RUN testing.vim/tvim test plugin/robot_test.vim
+RUN rm -rf plugin
+RUN rm -rf testing.vim
