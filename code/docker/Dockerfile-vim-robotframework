@@ -7,20 +7,26 @@ RUN git clone --depth 1 https://github.com/dense-analysis/ale.git .vim/pack/plug
 RUN sudo python3 -m pip install --upgrade pip
 RUN sudo python3 -m pip install robotframework-lint robotframework-requests
 
-COPY code/robot robot
-COPY code/vim vim
-# COPY ./robot robot
-# COPY ./vim vim
+# COPY code/robot robot
+# COPY code/vim vim
+COPY ./robot robot
+RUN sudo chown ${USER}: robot
 
 RUN mkdir -p .vim/pack/plugins/start/ale/ale_linters/robot
-RUN cp vim/rflint.vim .vim/pack/plugins/start/ale/ale_linters/robot/rflint.vim
+COPY ./vim/rflint.vim .vim/pack/plugins/start/ale/ale_linters/robot/rflint.vim
 
-RUN sudo chown ${USER}: vim
-RUN sudo chown ${USER}: robot
-RUN cp vim/vimrc .vimrc
-RUN cp vim/robot-syntax.vim .vim/syntax/robot.vim
-RUN cp vim/robot-ftdetect.vim .vim/ftdetect/robot.vim
+RUN mkdir -p .vim/pack/plugins/start/vim_robotframework/plugin
+RUN mkdir -p .vim/pack/plugins/start/vim_robotframework/syntax
+RUN mkdir -p .vim/pack/plugins/start/vim_robotframework/ftdetect
+COPY ./vim/vimrc .vimrc
+COPY ./vim/robot-ftdetect.vim .vim/pack/plugins/start/vim_robotframework/ftdetect/robot.vim
+COPY ./vim/robot-syntax.vim .vim/pack/plugins/start/vim_robotframework/syntax/robot.vim
+COPY ./vim/list_tests.py .vim/pack/plugins/start/vim_robotframework/plugin/list_tests.py
+COPY ./vim/robot-commands.vim .vim/pack/plugins/start/vim_robotframework/plugin/robot-commands.vim
+
 
 RUN testing.vim/tvim test plugin/robot_test.vim
 RUN rm -rf plugin
 RUN rm -rf testing.vim
+RUN rm .vim/syntax/robot.vim
+RUN rm .vim/ftdetect/robot.vim
