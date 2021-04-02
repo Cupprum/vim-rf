@@ -19,7 +19,7 @@ jobs:
             set -e
             cp /github/code/vim/robot-syntax.vim .vim/syntax/robot.vim
             cp /github/code/vim/robot-ftdetect.vim .vim/ftdetect/robot.vim
-            cp /github/code/test test
+            cp -r /github/code/test test
             mkdir -p .vim/start
             cp /github/code/vim/list_tests.py .vim/start/list_tests.py
             cp /github/code/vim/robot-commands.py .vim/start/robot-commands.py
