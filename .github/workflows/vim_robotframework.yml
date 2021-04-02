@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: vimrobotframework/vim_base_syntax_test:latest
-      options: "--entrypoint='' bash"
     steps:
       - name: Checkout code
         uses: actions/checkout@master
