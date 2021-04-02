@@ -9,7 +9,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/owner/image
+      image: vimrobotframework/vim_base_syntax_test
     steps:
     - id: ls
       run: |
