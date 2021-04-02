@@ -12,7 +12,10 @@ jobs:
       image: vimrobotframework/vim_base_syntax_test:latest
       options: "--entrypoint='' bash"
     steps:
-    - run: |
+      - name: Checkout code
+        uses: actions/checkout@master
+      - name: Test
+        run: |
         ls -la
         echo "test123"
         pwd
