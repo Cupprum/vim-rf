@@ -21,7 +21,9 @@ jobs:
             cp /github/code/vim/robot-ftdetect.vim .vim/ftdetect/robot.vim
             TESTOUTPUT=$(testing.vim/tvim test plugin/robot_test.vim)
             echo "$TESTOUTPUT"
-            if [ "$a" -gt "10" ]; then
+            OUTPUTLINES=$(echo "$TESTOUTPUT" | wc -l)
+            echo "$OUTPUTLINES"
+            if [ "$OUTPUTLINES" -gt "10" ]; then
               exit 1
             fi
             # ls -la
