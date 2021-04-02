@@ -17,8 +17,10 @@ syntax sync minlines=100
 " PreProc
 " Type
 
+
+syntax region robotComment start='#' end='$' oneline
 syntax match robotVariableName '\([[:alnum:]_] \{0,1}\)\+' contained
-syntax region robotVariable start='\(\$\|%\|@\|&\){' end='}\(=\|\)' contains=robotVariableName keepend
+syntax region robotVariable start='\(\$\|%\|@\|&\){' end='}\(=\|\)' contains=robotVariableName,robotComment oneline
 syntax match robotPath '\(\.\|\)/[[:punct:][:alnum:][:punct:]]\+' contained
 
 " Sections
@@ -26,16 +28,16 @@ syntax match robotSections '^\*\*\*[[:alpha:][:blank:]]\+\*\*\*'
 
 " Settings
 syntax keyword robotAnd AND contained nextgroup=robotBlank
-syntax match robotBlank '[[:blank:]]\+' contained nextgroup=robotAnd,robotPth,robotSettingValue
+syntax match robotBlank '[[:blank:]]\+' contained nextgroup=robotAnd,robotPath,robotSettingValue
 
 syntax match robotThreeDotsImports '^\.\.\.' contained nextgroup=robotBlank
 
 syntax match robotSettingName '^\([[:alnum:]] \{0,1}\)\+' contained nextgroup=robotBlank
-syntax match robotettingValue '\([[:alnum:]] \{0,1}\)\+' contained nextgroup=robotSettingParams
-syntax match robotettingParams '.\+$' contained
+syntax match robotSettingValue '\([[:alnum:]] \{0,1}\)\+' contained nextgroup=robotSettingParams
+syntax match robotSettingParams '.\+$' contained
 
 syntax region robotImportsBorders start='^\*\*\* Settings \*\*\*' end='\(^\*\*\*\)\@=' 
-    \ contains=robotSettingName,robotSections,robotThreeDotsImports keepend
+    \ contains=robotSettingName,robotSections,robotThreeDotsImports,robotComment keepend
 
 syntax match robotSettingName '^\(Library\|Resource\|Variables\|Documentation\|Metadata\)' nextgroup=robotBlank
 syntax match robotSettingName '^\(Force\|Default\) Tags' nextgroup=robotBlank
@@ -49,10 +51,10 @@ syntax match robotThreeDotsTestCases '\.\.\.' contained
 syntax match robotTestCaseName '^\([[:alnum:]_] \{0,1}\)\+' contained
 syntax match robotTestCaseCall '^[[:blank:]]\+\([[:alnum:]] \{0,1}\)\+' contained
 syntax match robotTestCaseCallAfterVar '[[:blank:]]\+\([[:alnum:]] \{0,1}\)\+' contained
-syntax region robotVariableTestCase start='^[[:blank:]]\+\(\$\|%\|@\|&\){' end='}\(=\|\)' contains=robotVariableName keepend nextgroup=robotTestCaseCallAfterVar
+syntax region robotVariableTestCase start='^[[:blank:]]\+\(\$\|%\|@\|&\){' end='}\(=\|\)' contains=robotVariableName,robotComment oneline nextgroup=robotTestCaseCallAfterVar
 
 syntax region robotTestCaseBorders start='^\*\*\* Test Cases \*\*\*' end='\%$'
-    \ contains=robotTestCaseName,robotTestCaseCall,robotSections,robotVariableTestCase,robotVariable,robotThreeDotsTestCases,robotStrings
+    \ contains=robotTestCaseName,robotTestCaseCall,robotSections,robotVariableTestCase,robotVariable,robotThreeDotsTestCases,robotStrings,robotComment
 
 " --- Normal Standart Libraries
 " * BuiltIn
@@ -161,6 +163,8 @@ syntax match robotTestCaseCall 'Wait For Process' contained
 syntax match robotTestCaseCall 'Set Screenshot Directory' contained
 syntax match robotTestCaseCall 'Take Screenshot\( Without Embedding\|\)' contained
 
+highlight default link robotComment              Comment
+
 highlight default link robotSettingName          PreProc
 highlight default link robotThreeDotsImports     PreProc
 highlight default link robotSettingValue         Special
@@ -180,3 +184,5 @@ highlight default link robotTestCaseCall         Statement
 highlight default link robotTestCaseCallAfterVar Statement
 highlight default link robotThreeDotsTestCases   Type
 highlight default link robotStrings              Statement
+
+let b:current_syntax = "robot"

@@ -83,3 +83,27 @@ function! s:TestDir(arg)
     setlocal nomodifiable
 endfunction
 command! -nargs=? RFTestDir call s:TestDir(<q-args>)
+
+function! s:CommentLine() range
+    let l:wrapscan = &wrapscan
+    set nowrapscan
+
+    let l:cursor_pos = getpos('.')
+    execute a:firstline . "," . a:lastline . "s/^/\#/"
+
+    call setpos('.', l:cursor_pos)
+    let &wrapscan = l:wrapscan
+endfunction
+command -range RFCommentLine <line1>,<line2>call s:CommentLine()
+
+function! s:UncommentLine() range
+    let l:wrapscan = &wrapscan
+    set nowrapscan
+
+    let l:cursor_pos = getpos('.')
+    execute a:firstline . "," . a:lastline . "s/^\#//"
+
+    call setpos('.', l:cursor_pos)
+    let &wrapscan = l:wrapscan
+endfunction
+command -range RFUncommentLine <line1>,<line2>call s:UncommentLine()
