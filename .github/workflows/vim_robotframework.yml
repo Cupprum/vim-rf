@@ -6,26 +6,17 @@ on:
   workflow_dispatch:
 
 jobs:
-  my_build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checking out our code
-        uses: actions/checkout@master
-      - name: Say something
-        run: |
-          echo "A little more action"
   test:
-    needs: my_build
+    runs-on: ubuntu-latest
     container:
       image: vimrobotframework/vim_base_syntax_test:latest
-      steps:
-      - id: ls
-        run: |
-          cd ..
-          ls -la
-          echo "test123"
-          pwd
-  # build:
+      options: "--entrypoint /bin/bash"
+    steps:
+    - run: |
+        ls -la
+        echo "test123"
+        pwd
+# build:
   #   runs-on: ubuntu-latest
   #   steps:
   #     - uses: actions/checkout@v2
