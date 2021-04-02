@@ -13,6 +13,7 @@ jobs:
     steps:
     - id: ls
       run: |
+        cd ..
         ls -la
         echo "test123"
         pwd
