@@ -4,6 +4,7 @@ FROM vimrobotframework/vim_base:latest
 MAINTAINER Samuel Branisa <branisa.samuel@icloud.com>
 
 RUN git clone -q --depth 1 https://github.com/arp242/testing.vim.git testing.vim
+RUN git clone https://github.com/junegunn/vader.vim.git .vim/pack/plugins/start/vader.vim
 
 COPY code/robot plugin
 COPY code/vim vim
