@@ -1,0 +1,18 @@
+Given robot (some robot code):
+  Post Request Test
+      &{data}=          Create dictionary  title=Robotframework requests  body=This is a test!  userId=1
+      ${resp}=          POST On Session    jsonplaceholder     /posts    json=${data}
+
+      Status Should Be                     201    ${resp}
+      Dictionary Should Contain Key        ${resp.json()}     id
+
+Do (comment the block):
+    jVj:'<,'>RFCommentLine\<CR>
+
+Expect ruby (indented block):
+  Post Request Test
+  #     &{data}=          Create dictionary  title=Robotframework requests  body=This is a test!  userId=1
+  #     ${resp}=          POST On Session    jsonplaceholder     /posts    json=${data}
+
+      Status Should Be                     201    ${resp}
+      Dictionary Should Contain Key        ${resp.json()}     id

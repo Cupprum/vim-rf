@@ -12,7 +12,7 @@ function! s:TestCase(arg)
     try
         execute '?^[[:alnum:]]'
     catch
-        echom("Possition cursor on Test Case 1")
+        echom('Possition cursor on Test Case 1')
         call setpos('.', l:cursor_pos)
         let &wrapscan = l:wrapscan
         return 0
@@ -23,7 +23,7 @@ function! s:TestCase(arg)
     try
         execute '?\*\*\* Test Cases \*\*\*'
     catch
-        echom("Possition cursor on Test Case")
+        echom('Possition cursor on Test Case')
         call setpos('.', l:cursor_pos)
         let &wrapscan = l:wrapscan
         return 0
@@ -34,7 +34,7 @@ function! s:TestCase(arg)
     botright vnew
     setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
 
-    if a:arg == "-l"
+    if a:arg == '-l'
         let l:output = l:test_case_name
     else
         let l:output = system('robot -t "' . l:test_case_name . '" ' . l:file_path)
@@ -50,7 +50,7 @@ command! -nargs=? RFTestCase call s:TestCase(<q-args>)
 function! s:TestFile(arg)
     let l:file_path = expand('%:p')
 
-    if a:arg == "-l"
+    if a:arg == '-l'
         let l:output = system('python ' . s:path . '/list_tests.py ' . l:file_path)
     else
         let l:output = system('robot ' . l:file_path)
@@ -69,7 +69,7 @@ command! -nargs=? RFTestFile call s:TestFile(<q-args>)
 function! s:TestDir(arg)
     let l:dir_path = expand('%:p:h')
 
-    if a:arg == "-l"
+    if a:arg == '-l'
         let l:output = system('python ' . s:path . '/list_tests.py ' . l:dir_path)
     else
         let l:output = system('robot ' . l:dir_path)
@@ -89,7 +89,7 @@ function! s:CommentLine() range
     set nowrapscan
 
     let l:cursor_pos = getpos('.')
-    execute a:firstline . "," . a:lastline . "s/^/\#/"
+    execute a:firstline . ',' . a:lastline . 's/^/\# /'
 
     call setpos('.', l:cursor_pos)
     let &wrapscan = l:wrapscan
@@ -101,7 +101,7 @@ function! s:UncommentLine() range
     set nowrapscan
 
     let l:cursor_pos = getpos('.')
-    execute a:firstline . "," . a:lastline . "s/^\#//"
+    execute a:firstline . ',' . a:lastline . 's/^\# \?//'
 
     call setpos('.', l:cursor_pos)
     let &wrapscan = l:wrapscan
