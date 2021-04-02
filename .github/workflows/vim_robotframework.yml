@@ -12,9 +12,13 @@ jobs:
       - uses: addnab/docker-run-action@v3
         with:
           image: vimrobotframework/vim_base_syntax_test:latest
+          shell: bash
+          options: -v ${{ github.workspace }}:/github
           run: |
             ls -la
             echo "test123"
+            ls /
+            ls /github
   #   test:
   #     runs-on: ubuntu-latest
   #     container:
