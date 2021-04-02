@@ -19,7 +19,11 @@ jobs:
             set -e
             cp /github/code/vim/robot-syntax.vim .vim/syntax/robot.vim
             cp /github/code/vim/robot-ftdetect.vim .vim/ftdetect/robot.vim
-            testing.vim/tvim test plugin/robot_test.vim
+            TESTOUTPUT=$(testing.vim/tvim test plugin/robot_test.vim)
+            echo "$TESTOUTPUT"
+            if [ "$a" -gt "10" ]; then
+              exit 1
+            fi
             # ls -la
             # echo "test123"
             # ls -la /

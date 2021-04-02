@@ -29,8 +29,8 @@ COPY ./vim/robot-syntax.vim .vim/pack/plugins/start/vim_robotframework/syntax/ro
 COPY ./vim/list_tests.py .vim/pack/plugins/start/vim_robotframework/plugin/list_tests.py
 COPY ./vim/robot-commands.vim .vim/pack/plugins/start/vim_robotframework/plugin/robot-commands.vim
 
-RUN testing.vim/tvim test plugin/robot_test.vim
-RUN rm -rf plugin
-RUN rm -rf testing.vim
 RUN rm .vim/syntax/robot.vim
 RUN rm .vim/ftdetect/robot.vim
+RUN testing.vim/tvim test plugin/robot_test.vim
+# RUN rm -rf plugin
+# RUN rm -rf testing.vim
