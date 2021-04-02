@@ -22,7 +22,7 @@ jobs:
             cp -r /github/code/test test
             mkdir -p .vim/start
             cp /github/code/vim/list_tests.py .vim/start/list_tests.py
-            cp /github/code/vim/robot-commands.py .vim/start/robot-commands.py
+            cp /github/code/vim/robot-commands.vim .vim/start/robot-commands.vim
             TESTOUTPUT=$(testing.vim/tvim test plugin/robot_test.vim)
             echo "$TESTOUTPUT"
             OUTPUTLINES=$(echo "$TESTOUTPUT" | wc -l)
