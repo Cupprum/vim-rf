@@ -7,7 +7,6 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
     container:
       image: vimrobotframework/vim_base_syntax_test:latest
     steps:
