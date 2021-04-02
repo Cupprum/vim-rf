@@ -11,8 +11,6 @@ jobs:
     container:
       image: vimrobotframework/vim_base_syntax_test:latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
       - name: Test
         run: |
           ls -la
