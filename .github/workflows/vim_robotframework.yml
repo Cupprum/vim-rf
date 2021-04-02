@@ -8,14 +8,23 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    container:
-      image: vimrobotframework/vim_base_syntax_test:latest
     steps:
-      - name: Test
-        run: |
-          ls -la
-          echo "test123"
-          pwd
+      - uses: addnab/docker-run-action@v3
+        with:
+          image: vimrobotframework/vim_base_syntax_test:latest
+          run: |
+            ls -la
+            echo "test123"
+  #   test:
+  #     runs-on: ubuntu-latest
+  #     container:
+  #       image: vimrobotframework/vim_base_syntax_test:latest
+  #     steps:
+  #       - name: Test
+  #         run: |
+  #           ls -la
+  #           echo "test123"
+  #           pwd
 # build:
   #   runs-on: ubuntu-latest
   #   steps:
