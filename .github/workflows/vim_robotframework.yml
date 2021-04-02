@@ -22,30 +22,20 @@ jobs:
             TESTOUTPUT=$(testing.vim/tvim test plugin/robot_test.vim)
             echo "$TESTOUTPUT"
             OUTPUTLINES=$(echo "$TESTOUTPUT" | wc -l)
-            if [ "$OUTPUTLINES" -gt "10" ]; then
+            if [ "$OUTPUTLINES" -ne "1" ]; then
               exit 1
             fi
-  #   test:
-  #     runs-on: ubuntu-latest
-  #     container:
-  #       image: vimrobotframework/vim_base_syntax_test:latest
-  #     steps:
-  #       - name: Test
-  #         run: |
-  #           ls -la
-  #           echo "test123"
-  #           pwd
-# build:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - name: Kaniko build base Vim
-  #       run: echo Test
-  #       # uses: aevea/action-kaniko@master
-  #       # with:
-  #       #   image: vimrobotframework/vim_base
-  #       #   username: ${{ secrets.DOCKERHUB_USERNAME }}
-  #       #   password: ${{ secrets.DOCKERHUB_PASSWORD }}
-  #       #   build_file: code/docker/Dockerfile-vim-base
-  #       #   cache: true
-  #       #   cache_registry: vimrobotframework/vim_base_cache
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Kaniko build base Vim
+        uses: aevea/action-kaniko@master
+        with:
+          image: vimrobotframework/vim_robotframework
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          build_file: code/docker/Dockerfile-vim-robotframework
+          cache: true
+          cache_registry: vimrobotframework/vim_robotframework_cache
