@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: vimrobotframework/vim_base_syntax_test:latest
-      options: "bash"
+      options: "--entrypoint='' bash"
     steps:
     - run: |
         ls -la
