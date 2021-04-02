@@ -16,11 +16,14 @@ jobs:
           shell: bash
           options: -v ${{ github.workspace }}:/github
           run: |
-            ls -la
-            echo "test123"
-            ls -la /
-            echo "test123"
-            ls -la /github
+            cp /github/code/vim/robot-syntax.vim .vim/syntax/robot.vim
+            cp /github/code/vim/robot-ftdetect.vim .vim/ftdetect/robot.vim
+            testing.vim/tvim test plugin/robot_test.vim
+            # ls -la
+            # echo "test123"
+            # ls -la /
+            # echo "test123"
+            # ls -la /github
   #   test:
   #     runs-on: ubuntu-latest
   #     container:
