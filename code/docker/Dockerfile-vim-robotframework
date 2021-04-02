@@ -15,14 +15,14 @@ COPY code/robot/2exec_tests.robot robot/2exec_tests.robot
 RUN sudo chown ${USER}: robot
 
 RUN mkdir -p .vim/pack/plugins/start/ale/ale_linters/robot
-COPY ./vim/rflint.vim .vim/pack/plugins/start/ale/ale_linters/robot/rflint.vim
+COPY code/vim/rflint.vim .vim/pack/plugins/start/ale/ale_linters/robot/rflint.vim
 
 RUN mkdir -p .vim/pack/plugins/start/vim_robotframework/plugin
 RUN mkdir -p .vim/pack/plugins/start/vim_robotframework/syntax
 RUN mkdir -p .vim/pack/plugins/start/vim_robotframework/ftdetect
 
-COPY ./vim/vimrc .vimrc
-COPY ./vim/robot-ftdetect.vim .vim/pack/plugins/start/vim_robotframework/ftdetect/robot.vim
-COPY ./vim/robot-syntax.vim .vim/pack/plugins/start/vim_robotframework/syntax/robot.vim
-COPY ./vim/list_tests.py .vim/pack/plugins/start/vim_robotframework/plugin/list_tests.py
-COPY ./vim/robot-commands.vim .vim/pack/plugins/start/vim_robotframework/plugin/robot-commands.vim
+COPY code/vim/vimrc .vimrc
+COPY code/vim/robot-ftdetect.vim .vim/pack/plugins/start/vim_robotframework/ftdetect/robot.vim
+COPY code/vim/robot-syntax.vim .vim/pack/plugins/start/vim_robotframework/syntax/robot.vim
+COPY code/vim/list_tests.py .vim/pack/plugins/start/vim_robotframework/plugin/list_tests.py
+COPY code/vim/robot-commands.vim .vim/pack/plugins/start/vim_robotframework/plugin/robot-commands.vim
