@@ -13,7 +13,7 @@ jobs:
     steps:
     - id: ls
       run: |
-        ls
+        ls -la
         echo "test123"
         pwd
   # build:
