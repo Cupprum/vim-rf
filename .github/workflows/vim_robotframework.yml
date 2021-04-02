@@ -22,15 +22,9 @@ jobs:
             TESTOUTPUT=$(testing.vim/tvim test plugin/robot_test.vim)
             echo "$TESTOUTPUT"
             OUTPUTLINES=$(echo "$TESTOUTPUT" | wc -l)
-            echo "$OUTPUTLINES"
             if [ "$OUTPUTLINES" -gt "10" ]; then
               exit 1
             fi
-            # ls -la
-            # echo "test123"
-            # ls -la /
-            # echo "test123"
-            # ls -la /github
   #   test:
   #     runs-on: ubuntu-latest
   #     container:

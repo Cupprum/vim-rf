@@ -11,6 +11,8 @@ COPY code/vim vim
 RUN sudo chown ${USER}: vim
 RUN sudo chown ${USER}: plugin
 RUN cp vim/vimrc .vimrc
+RUN mkdir -p .vim/syntax
+RUN mkdir -p .vim/ftdetect
 RUN cp vim/robot-syntax.vim .vim/syntax/robot.vim
 RUN cp vim/robot-ftdetect.vim .vim/ftdetect/robot.vim
 

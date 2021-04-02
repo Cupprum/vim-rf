@@ -24,8 +24,3 @@ RUN chown -R ${USER}:${USER} ${USER_HOME}
 
 USER ${USER}
 WORKDIR ${USER_HOME}
-
-# Create vim folders for packages
-RUN mkdir -p .vim/pack/plugins/start
-RUN mkdir .vim/syntax
-RUN mkdir .vim/ftdetect
