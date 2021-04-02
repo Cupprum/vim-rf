@@ -16,6 +16,7 @@ jobs:
           shell: bash
           options: -v ${{ github.workspace }}:/github
           run: |
+            set -e
             cp /github/code/vim/robot-syntax.vim .vim/syntax/robot.vim
             cp /github/code/vim/robot-ftdetect.vim .vim/ftdetect/robot.vim
             testing.vim/tvim test plugin/robot_test.vim
