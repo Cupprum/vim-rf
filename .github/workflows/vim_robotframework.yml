@@ -17,8 +17,9 @@ jobs:
           run: |
             ls -la
             echo "test123"
-            ls /
-            ls /github
+            ls -la /
+            echo "test123"
+            ls -la /github
   #   test:
   #     runs-on: ubuntu-latest
   #     container:
