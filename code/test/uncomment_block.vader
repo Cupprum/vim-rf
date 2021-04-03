@@ -6,10 +6,10 @@ Given robot (some robot code):
       Status Should Be                     201    ${resp}
       Dictionary Should Contain Key        ${resp.json()}     id
 
-Do (comment the block):
+Do (uncomment second and third line):
     jVj:'<,'>RFUncommentLine\<CR>
 
-Expect ruby (indented block):
+Expect robot (all code should be uncommented):
   Post Request Test
       &{data}=          Create dictionary  title=Robotframework requests  body=This is a test!  userId=1
       ${resp}=          POST On Session    jsonplaceholder     /posts    json=${data}

@@ -1,8 +1,15 @@
 let s:path = expand('<sfile>:p:h')
 
-" TEST CURRENT TESTCASE
-function! s:TestCase(arg)
-    let l:file_path = expand('%:p')
+function! RFPutToNewBuffer(output)
+    botright vnew
+    setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+
+    put = a:output
+
+    setlocal nomodifiable
+endfunction
+
+function! RFFindTestCaseName()
     let l:wrapscan = &wrapscan
     set nowrapscan
 
@@ -28,21 +35,25 @@ function! s:TestCase(arg)
         let &wrapscan = l:wrapscan
         return 0
     endtry
-        
-    call setpos('.', l:cursor_pos)
 
-    botright vnew
-    setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+    let &wrapscan = l:wrapscan
+    call setpos('.', l:cursor_pos)
+    return l:test_case_name
+endfunction
+
+" TEST CURRENT TESTCASE
+function! s:TestCase(arg)
+    let l:file_path = expand('%:p')
+
+    let l:test_case_name = RFFindTestCaseName()
 
     if a:arg == '-l'
         let l:output = l:test_case_name
     else
         let l:output = system('robot -t "' . l:test_case_name . '" ' . l:file_path)
     endif
-    put = l:output
 
-    setlocal nomodifiable
-    let &wrapscan = l:wrapscan
+    call RFPutToNewBuffer(l:output)
 endfunction
 command! -nargs=? RFTestCase call s:TestCase(<q-args>)
 
@@ -56,12 +67,7 @@ function! s:TestFile(arg)
         let l:output = system('robot ' . l:file_path)
     endif
 
-    botright vnew
-    setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
-
-    put = l:output
-
-    setlocal nomodifiable
+    call RFPutToNewBuffer(l:output)
 endfunction
 command! -nargs=? RFTestFile call s:TestFile(<q-args>)
 
@@ -75,12 +81,7 @@ function! s:TestDir(arg)
         let l:output = system('robot ' . l:dir_path)
     endif
 
-    botright vnew
-    setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
-
-    put = l:output
-
-    setlocal nomodifiable
+    call RFPutToNewBuffer(l:output)
 endfunction
 command! -nargs=? RFTestDir call s:TestDir(<q-args>)
 
