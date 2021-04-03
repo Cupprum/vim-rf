@@ -20,7 +20,7 @@ jobs:
             cp /github/code/vim/robot-syntax.vim .vim/syntax/robot.vim
             cp /github/code/vim/robot-ftdetect.vim .vim/ftdetect/robot.vim
             cp -r /github/code/test test
-            mkdir -p .vim/start
+            mkdir -p .vim/pack/plugins/start/vim_robotframework/plugin
             cp /github/code/vim/list_tests.py .vim/pack/plugins/start/vim_robotframework/plugin/list_tests.py
             cp /github/code/vim/robot-commands.vim .vim/pack/plugins/start/vim_robotframework/plugin/robot-commands.vim
             TESTOUTPUT=$(testing.vim/tvim test plugin/robot_test.vim)
