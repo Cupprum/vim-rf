@@ -3,7 +3,7 @@ name: vim_robotframework
 on:
   push:
     branches: [ master ]
-    tags:
+  tags:
   workflow_dispatch:
 
 jobs:
