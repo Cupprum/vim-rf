@@ -17,4 +17,4 @@ RUN mkdir -p .vim/ftdetect
 RUN cp vim/robot-syntax.vim .vim/syntax/robot.vim
 RUN cp vim/robot-ftdetect.vim .vim/ftdetect/robot.vim
 
-RUN testing.vim/tvim gen-syn plugin/add_client_owners.robot > plugin/robot_test.vim
+RUN testing.vim/tvim gen-syn plugin/robot_syntax_test.robot > plugin/robot_test.vim
