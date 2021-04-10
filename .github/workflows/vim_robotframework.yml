@@ -44,13 +44,7 @@ jobs:
           image: vimrobotframework/vim_robotframework
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          tag: ${{ GITHUB_REF/refs\/tags\// || 'latest' }}
           build_file: code/docker/Dockerfile-vim-robotframework
           cache: true
           cache_registry: vimrobotframework/vim_robotframework_cache
-
-  print:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get the version
-        id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
