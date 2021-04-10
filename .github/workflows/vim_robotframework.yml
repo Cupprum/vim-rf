@@ -40,7 +40,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Find tag
-        run: echo "TAG=$($GITHUB_REF/refs\/tags\//} || echo 'latest')" >> $GITHUB_ENV
+        run: echo "TAG=$($GITHUB_REF/refs\/tags\// || 'latest')" >> $GITHUB_ENV
       - name: Kaniko build base Vim
         uses: aevea/action-kaniko@master
         with:
