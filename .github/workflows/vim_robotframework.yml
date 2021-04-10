@@ -24,11 +24,13 @@ jobs:
             cp /github/code/vim/list_tests.py .vim/pack/plugins/start/vim_robotframework/plugin/list_tests.py
             cp /github/code/vim/robot-commands.vim .vim/pack/plugins/start/vim_robotframework/plugin/robot-commands.vim
             TESTOUTPUT=$(testing.vim/tvim test plugin/robot_test.vim)
+            echo "-----Testing vim-----"
             echo "$TESTOUTPUT"
             OUTPUTLINES=$(echo "$TESTOUTPUT" | wc -l)
             if [ "$OUTPUTLINES" -ne "1" ]; then
               exit 1
             fi
+            echo "--------Vader--------"
             vim -c 'Vader! test/*.vader'
   build:
     needs: test
