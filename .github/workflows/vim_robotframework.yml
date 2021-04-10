@@ -39,15 +39,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Find tag
-        run: echo "TAG=$(echo ${GITHUB_REF:-latest}/refs\/tags\//)" >> $GITHUB_ENV
+      - uses: olegtarasov/get-tag@v2.1
+        id: tagName
+        # - name: Find tag
+        # run: echo "TAG=$(echo ${GITHUB_REF:-latest}/refs\/tags\//)" >> $GITHUB_ENV
       - name: Kaniko build base Vim
         uses: aevea/action-kaniko@master
         with:
           image: vimrobotframework/vim_robotframework
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          tag: ${{ env.TAG }}
+          tag: ${{ steps.tagName.outputs.tag }}
           build_file: code/docker/Dockerfile-vim-robotframework
           cache: true
           cache_registry: vimrobotframework/vim_robotframework_cache
