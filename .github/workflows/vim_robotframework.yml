@@ -3,8 +3,8 @@ name: vim_robotframework
 on:
   push:
     branches: [ master ]
+    tags:
   workflow_dispatch:
-  release:
 
 jobs:
   test:
@@ -47,3 +47,10 @@ jobs:
           build_file: code/docker/Dockerfile-vim-robotframework
           cache: true
           cache_registry: vimrobotframework/vim_robotframework_cache
+
+  print:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
