@@ -47,7 +47,7 @@ jobs:
           image: vimrobotframework/vim_robotframework
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          tag: ${{ $TAG }}
+          tag: ${{ env.TAG }}
           build_file: code/docker/Dockerfile-vim-robotframework
           cache: true
           cache_registry: vimrobotframework/vim_robotframework_cache
