@@ -1,1 +1,5 @@
 Makefile
+.git
+.github
+.gitignore
+.git*

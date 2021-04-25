@@ -20,8 +20,8 @@ jobs:
           options: -v ${{ github.workspace }}:/github
           run: |
             set -e
-            cp /github/syntax .vim/syntax
-            cp /github/ftdetect .vim/ftdetect
+            cp -r /github/syntax .vim/syntax
+            cp -r /github/ftdetect .vim/ftdetect
             cp -r /github/other/test test
             mkdir -p .vim/pack/plugins/start/vim_rf/plugin
             cp /github/code/plugin .vim/pack/plugins/start/vim_robotframework/plugin
