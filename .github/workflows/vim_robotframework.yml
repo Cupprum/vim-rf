@@ -23,7 +23,7 @@ jobs:
             cp -r /github/syntax .vim/syntax
             cp -r /github/ftdetect .vim/ftdetect
             cp -r /github/other/test test
-            mkdir -p .vim/pack/plugins/start/vim_rf/plugin
+            mkdir -p .vim/pack/plugins/start/vim_robotframework/plugin
             cp -r /github/plugin .vim/pack/plugins/start/vim_robotframework/plugin
             TESTOUTPUT=$(testing.vim/tvim test plugin/robot_test.vim)
             echo "-----Testing vim-----"
