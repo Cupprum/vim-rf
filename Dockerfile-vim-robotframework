@@ -1,0 +1,20 @@
+# /* vim: set filetype=dockerfile : */
+
+FROM vimrobotframework/vim_base:latest
+MAINTAINER Samuel Branisa <branisa.samuel@icloud.com>
+
+RUN sudo apt update && sudo apt install -y universal-ctags
+RUN git clone https://github.com/preservim/tagbar.git .vim/pack/plugins/start/tagbar
+RUN git clone --depth 1 https://github.com/dense-analysis/ale.git .vim/pack/plugins/start/ale
+RUN sudo python3 -m pip install --upgrade pip && sudo python3 -m pip install robotframework-lint robotframework-requests
+
+COPY other/robot robot
+RUN sudo chown ${USER}: robot
+
+RUN mkdir -p .vim/pack/plugins/start/ale/ale_linters/robot
+COPY other/rflint.vim .vim/pack/plugins/start/ale/ale_linters/robot/rflint.vim
+
+COPY .vimrc .vimrc
+COPY ftdetect .vim/pack/plugins/start/vim_robotframework/ftdetect
+COPY syntax .vim/pack/plugins/start/vim_robotframework/syntax
+COPY plugin .vim/pack/plugins/start/vim_robotframework/plugin

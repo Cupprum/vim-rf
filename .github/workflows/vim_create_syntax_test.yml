@@ -14,6 +14,6 @@ jobs:
           image: vimrobotframework/vim_base_syntax_test
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          build_file: code/docker/Dockerfile-vim-syntax-test
+          build_file: Dockerfile-vim-syntax-test
           cache: true
           cache_registry: vimrobotframework/vim_base_syntax_test_cache

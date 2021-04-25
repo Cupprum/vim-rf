@@ -1,0 +1,30 @@
+# /* vim: set filetype=dockerfile : */
+
+FROM python:3.8-slim-buster
+MAINTAINER Samuel Branisa <branisa.samuel@icloud.com>
+
+# Install tools for compiling Vim
+RUN apt-get update && apt-get install -y sudo git build-essential libncurses5-dev
+
+# Compile newest version of Vim
+RUN git clone https://github.com/vim/vim.git /tmp/vim
+RUN make -C /tmp/vim
+RUN make install -C /tmp/vim
+
+# Uninstall tools for compiling Vim and remove unnecessary file
+RUN apt-get remove -y git build-essential libncurses5-dev
+RUN rm -rf /tmp/vim
+
+# Create user
+ARG USER=vim-rf
+ENV USER ${USER}
+RUN adduser ${USER} \
+      && echo "${USER}   ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+# Set privilages to user
+ENV USER_HOME /home/${USER}
+RUN chown -R ${USER}:${USER} ${USER_HOME}
+
+# Use user and move to home
+USER ${USER}
+WORKDIR ${USER_HOME}

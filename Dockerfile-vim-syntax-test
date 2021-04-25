@@ -1,0 +1,33 @@
+# /* vim: set filetype=dockerfile : */
+
+FROM vimrobotframework/vim_base:latest
+MAINTAINER Samuel Branisa <branisa.samuel@icloud.com>
+
+# Install necessary tools
+RUN sudo apt-get update && sudo apt-get install -y git
+
+# Install vim plugins for testing
+RUN git clone -q --depth 1 https://github.com/arp242/testing.vim.git testing.vim
+RUN git clone https://github.com/junegunn/vader.vim.git .vim/pack/plugins/start/vader.vim
+
+# Uninstall necessary tools
+RUN sudo apt-get remove -y git
+
+# Copy files necessary for testing
+COPY other/robot/robot_syntax_test.robot plugin/robot_syntax_test.robot
+
+# Copy files for highlighting robot syntax
+COPY .vimrc .vimrc
+COPY syntax .vim/syntax
+COPY ftdetect .vim/ftdetect
+
+# Change permissions to necessary folders
+RUN sudo chown ${USER}: .vim
+RUN sudo chown ${USER}: plugin
+
+# Generate file for testing syntax
+RUN testing.vim/tvim gen-syn plugin/robot_syntax_test.robot > plugin/robot_test.vim
+
+# Clean
+RUN sudo rm -rf .vim/syntax
+RUN sudo rm -rf .vim/ftdetect

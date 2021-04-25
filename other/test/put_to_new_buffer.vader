@@ -1,0 +1,9 @@
+Do (call function which creates new scratch buffer with split on right then copy its content to main screen):
+  :call RFPutToNewBuffer('test123')\<CR>
+  Y
+  \<C-W>h
+  P
+
+Expect (check if main buffer contains content from right scratch split):
+  test123
+  
