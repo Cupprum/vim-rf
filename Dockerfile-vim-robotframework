@@ -36,11 +36,3 @@ COPY doc .vim/pack/plugins/start/vim_robotframework/doc
 
 # Generate tags for doc files, so user can use them out of the box
 RUN sudo vim -c 'helptags .vim/pack/plugins/start/vim_robotframework/doc' -c 'q'
-
-# DEBUG
-# RUN mkdir robot
-# COPY other/robot/1exec_tests.robot robot/1exec_tests.robot
-# COPY other/robot/2exec_tests.robot robot/2exec_tests.robot
-# RUN sudo chown ${USER}: robot
-# COPY other/test test
-# COPY other/start_vader.bash start_vader.bash
