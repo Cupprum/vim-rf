@@ -31,4 +31,7 @@ COPY .vimrc .vimrc
 COPY ftdetect .vim/pack/plugins/start/vim_robotframework/ftdetect
 COPY syntax .vim/pack/plugins/start/vim_robotframework/syntax
 COPY plugin .vim/pack/plugins/start/vim_robotframework/plugin
-COPY docs .vim/pack/plugins/start/vim_robotframework/docs
+COPY doc .vim/pack/plugins/start/vim_robotframework/doc
+
+# Generate tags for doc files, so user can use them out of the box
+RUN sudo vim -c 'helptags .vim/pack/plugins/start/vim_robotframework/doc' -c 'q'
