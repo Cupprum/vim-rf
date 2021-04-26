@@ -55,6 +55,17 @@ endif
 
 syntax on
 filetype plugin on
+
 let g:ale_completion_enabled = 1
 let g:ale_completion_delay = 0
 let g:ale_hover_to_preview = 1
+let b:ale_linters = ['rflint']
+
+let g:tagbar_type_robot= {
+    \ 'ctagstype' : 'robot',
+    \ 'kinds'     : [
+        \'t:testcases',
+        \'k:keywords',
+        \'v:variables'
+  \]
+\}
