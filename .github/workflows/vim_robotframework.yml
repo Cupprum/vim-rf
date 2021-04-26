@@ -23,10 +23,10 @@ jobs:
             cp -r /github/syntax .vim/syntax
             cp -r /github/ftdetect .vim/ftdetect
             cp -r /github/other/test test
-            mkdir -p .vim/pack/plugins/start/vim_robotframework/autoload
-            mkdir -p .vim/pack/plugins/start/vim_robotframework/ftplugin
-            cp -r /github/autoload .vim/pack/plugins/start/vim_robotframework/autoload
-            cp -r /github/ftplugin .vim/pack/plugins/start/vim_robotframework/ftplugin
+            mkdir -p .vim/autoload
+            mkdir -p .vim/ftplugin
+            cp -r /github/autoload .vim/autoload
+            cp -r /github/ftplugin .vim/ftplugin
             TESTOUTPUT=$(testing.vim/tvim test plugin/robot_test.vim)
             echo "-----Testing vim-----"
             echo "$TESTOUTPUT"
