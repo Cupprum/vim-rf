@@ -25,6 +25,8 @@ jobs:
             cp -r /github/ftdetect .vim/ftdetect
             cp -r /github/autoload .vim/autoload
             cp -r /github/ftplugin .vim/ftplugin
+            ls .vim/ftplugin
+            cat .vim/ftplugin/robot.vim
             TESTOUTPUT=$(testing.vim/tvim test plugin/robot_test.vim)
             echo "-----Testing vim-----"
             echo "$TESTOUTPUT"
