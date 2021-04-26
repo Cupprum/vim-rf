@@ -20,11 +20,9 @@ jobs:
           options: -v ${{ github.workspace }}:/github
           run: |
             set -e
+            cp -r /github/other/test test
             cp -r /github/syntax .vim/syntax
             cp -r /github/ftdetect .vim/ftdetect
-            cp -r /github/other/test test
-            mkdir -p .vim/autoload
-            mkdir -p .vim/ftplugin
             cp -r /github/autoload .vim/autoload
             cp -r /github/ftplugin .vim/ftplugin
             TESTOUTPUT=$(testing.vim/tvim test plugin/robot_test.vim)
