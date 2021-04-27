@@ -1,4 +1,7 @@
-*potion.txt* functionality for the robot framework
+/* vim: set filetype=help : */
+/* vim: set filetype=txt : */
+
+*vim-rf* functionality for the robot framework
 
        _               __       _           _          ~
 /\   /(_)_ __ ___     /__\ ___ | |__   ___ | |_        ~
@@ -13,5 +16,139 @@
 \/   |_|  \__,_|_| |_| |_|\___| \_/\_/ \___/|_|  |_|\_\~
                                                        ~
 
-          Functionality for the Robot Framework testing language.
-        Includes syntax highlighting, executing tests, and much more!
+  Functionality for the Robot Framework testing language.
+Includes syntax highlighting, executing tests, and much more!
+
+====================================================================
+CONTENTS                                           *vim-rf-contents*
+
+    1. Usage ................ |vim-rf-usage|
+    2. Mappings ............. |vim-rf-mappings|
+    3. License .............. |vim-rf-license|
+    4. Bugs ................. |vim-rf-bugs|
+    5. Contributing ......... |vim-rf-contributing|
+    6. Credits .............. |vim-rf-credits|
+
+====================================================================
+Section 1: Usage                                      *vim-rf-usage*
+
+This plugin will automatically provide syntax highlighting for
+Robot Framework files (files ending in .robot).
+
+It is also a filetype plugin, so it extends Vim with new super cool
+functionality when working with Robot Framework
+
+The :RFTestCase command finds out name of current Test Case and
+executes it.
+Example: >
+
+    :RFTestCase
+
+All you need to do is place your cursor on the name of the Test
+Case or somewhere inside the scope of the Test Case and |vim-rf|
+will take care of the rest. After Test Case execution, the output
+will be printed in scratch buffer created as a new split.
+It is possible not to execute Test Case, but just to print its name
+by adding -l to the command like this: >
+
+    :RFTestCase -l
+
+The :RFTestFile command executes all tests in current file. Output
+of executed tests is then displayed in new scratch buffer, which is
+created as a split.
+Example: >
+
+    :RFTestFile
+
+It is also possible to list all names of Test Cases before the
+execution by specifying flag -l like this: >
+    
+    :RFTestFile -l
+
+In order for listing Test Cases
+properly, it is necessary to have python installed in path. Also
+this previously mentioned version of python must have robot
+framework installed. It is highly advised to install robot
+framework with pip.
+
+Robot Framework allows its users to create Test Suites by
+collecting similar Test Files in Folders or Directories. |vim-rf|
+allows running all Test Cases from current Test Suite by: >
+
+    :RFTestDir
+
+Output of executed Test Cases is then displayed in new scratch
+buffer, which is created as a split.
+It is also possible just to list names of Test Cases by: >
+
+    :RFTestDir -l
+
+List of Test Case names will be displayed then in new scratch
+buffer, which is created as a split.
+
+Command :RFCommentLine works in normal and also visual mode and
+is used to comment current line or highlighted block of lines.
+Example normal mode: >
+
+    :RFCommentLine
+
+Example visual mode: >
+
+    :'<,'>RFCommentLine
+
+It is also possible to uncomment current lino or highlighted
+block of lines by: >
+
+    :RFUncommentLine
+
+or: >
+
+    :'<,'>RFUncommentLine
+
+====================================================================
+Section 2: Mappings                                *vim-rf-mappings*
+
+This plugin does not intend to create mappings because it could
+cause overwriting some of users predefined mappings. Because of
+this reason only command were created. If you want to map these
+commands, feel free to inspire from next mappings code example.
+Just copy and paste them into your |.vimrc|. >
+
+    " Map control slash to Comment Lines
+    nnoremap <C-_> :RFCommentLine<CR>
+    vnoremap <C-_> :RFCommentLine<CR>
+
+    " Map control question mark to Uncomment Lines
+    nnoremap <C-?> :RFUncommentLine<CR>
+    vnoremap <C-?> :RFUncommentLine<CR>
+
+    " Map <Leader> t to testing single Test Case
+    nnoremap <leader>t :RFTestCase<CR>
+    nnoremap <leader>T :RFTestCase -l<CR>
+
+    " Map <Leader> f to testing all Test Cases in current file
+    nnoremap <leader>f :RFTestFile<CR>
+    nnoremap <leader>F :RFTestFile -l<CR>
+
+    " Map <Leader> d to testing all Test Cases in current Test Suite
+    nnoremap <leader>D :RFTestDir<CR>
+    nnoremap <leader>D :RFTestDir -l<CR>
+
+I know that first mapping says <C-_> and not <C-/> in order to
+map the mapping to Control slash. This is beacuse of Vim's funny
+way of working with slash character so trust me on this one.
+
+====================================================================
+Section 3: License                                  *vim-rf-license*
+
+
+====================================================================
+Section 4: Bugs                                        *vim-rf-bugs*
+
+
+====================================================================
+Section 5: Contributing                        *vim-rf-contributing*
+
+
+====================================================================
+Section 6: Credits                                  *vim-rf-credits*

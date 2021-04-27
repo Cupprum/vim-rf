@@ -53,14 +53,18 @@ if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
 
+" Turn on syntax highlighting inside of Vim
 syntax on
+" Allow filetype plugins
 filetype plugin on
 
+" Ale configuration for robot framework
 let g:ale_completion_enabled = 1
 let g:ale_completion_delay = 0
 let g:ale_hover_to_preview = 1
 let b:ale_linters = ['rflint']
 
+" Tagbar configuration in order to work with robot framework
 let g:tagbar_type_robot= {
     \ 'ctagstype' : 'robot',
     \ 'kinds'     : [
@@ -69,3 +73,26 @@ let g:tagbar_type_robot= {
         \'v:variables'
   \]
 \}
+
+" Set Leader key to `
+let mapleader = "`"
+
+" Map control slash to Comment Lines
+nnoremap <C-_> :RFCommentLine<CR>
+vnoremap <C-_> :RFCommentLine<CR>
+
+" Map control question mark to Uncomment Lines
+nnoremap <C-?> :RFUncommentLine<CR>
+vnoremap <C-?> :RFUncommentLine<CR>
+
+" Map <Leader> t to testing single Test Case
+nnoremap <leader>t :RFTestCase<CR>
+nnoremap <leader>T :RFTestCase -l<CR>
+
+" Map <Leader> f to testing all Test Cases in current file
+nnoremap <leader>f :RFTestFile<CR>
+nnoremap <leader>F :RFTestFile -l<CR>
+
+" Map <Leader> d to testing all Test Cases in current Test Suite
+nnoremap <leader>D :RFTestDir<CR>
+nnoremap <leader>D :RFTestDir -l<CR>
