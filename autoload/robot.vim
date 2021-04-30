@@ -57,3 +57,11 @@ function! robot#UncommentLine() range
     call setpos('.', l:cursor_pos)
     let &wrapscan = l:wrapscan
 endfunction
+
+function! robot#Lint()
+    let l:file_path = expand('%:p')
+
+    let l:output = system('rflint ' . l:file_path)
+
+    call RFPutToNewBuffer(l:output)
+endfunction

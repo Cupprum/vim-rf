@@ -50,5 +50,8 @@ command! -nargs=? RFTestFile call robot#TestFile(<q-args>, s:path)
 " TEST CURRENT DIRECTORY
 command! -nargs=? RFTestDir call robot#TestDir(<q-args>, s:path)
 
+" Print all Errors and Warnings
+command! RFLint call robot#Lint()
+
 command -range RFCommentLine <line1>,<line2>call robot#CommentLine()
 command -range RFUncommentLine <line1>,<line2>call robot#UncommentLine()

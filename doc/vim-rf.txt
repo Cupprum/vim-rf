@@ -1,6 +1,4 @@
-/* vim: set filetype=help : */
-/* vim: set filetype=txt : */
-
+# /* vim: set filetype=help : */
 *vim-rf* functionality for the robot framework
 
        _               __       _           _          ~
@@ -86,6 +84,12 @@ It is also possible just to list names of Test Cases by: >
 List of Test Case names will be displayed then in new scratch
 buffer, which is created as a split.
 
+If you have rflint (Robot Framework Lint) installed you can use command
+:RFLint to print all Errors and Warnings in new scratch buffer.
+Example: >
+    
+    :RFLint
+
 Command :RFCommentLine works in normal and also visual mode and
 is used to comment current line or highlighted block of lines.
 Example normal mode: >
@@ -141,14 +145,26 @@ way of working with slash character so trust me on this one.
 ====================================================================
 Section 3: License                                  *vim-rf-license*
 
+Same terms as Vim itself (see |license|)
 
 ====================================================================
 Section 4: Bugs                                        *vim-rf-bugs*
 
+In case you find some bug please create Github issue here
+https://github.com/Cupprum/VIM-RF-BP/issues.
+If you are not comfortable creating issues, you can send mail to
+branisa.samuel@icloud.com about the bug and i will create this
+issue for you.
+If you already found way how to fix this bug, please create a Pull
+Request here https://github.com/Cupprum/VIM-RF-BP/pulls. I will
+gladly look at it.
 
 ====================================================================
 Section 5: Contributing                        *vim-rf-contributing*
 
-
-====================================================================
-Section 6: Credits                                  *vim-rf-credits*
+Have some fresh ideas how to make this plugin more awesome?
+Amazing!
+Feel free to create Pull Request here
+https://github.com/Cupprum/VIM-RF-BP/pulls. I would really like
+to see your code!
+https://github.com/Cupprum/VIM-RF-BP

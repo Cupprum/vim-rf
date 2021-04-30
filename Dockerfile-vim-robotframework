@@ -9,12 +9,13 @@ RUN sudo apt-get update && sudo apt-get install -y git universal-ctags
 # Install necessary Vim plugins
 RUN git clone https://github.com/preservim/tagbar.git .vim/pack/plugins/start/tagbar
 RUN git clone --depth 1 https://github.com/dense-analysis/ale.git .vim/pack/plugins/start/ale
+RUN git clone https://github.com/ludovicchabant/vim-gutentags.git .vim/pack/plugins/start/vim-gutentags
 
 # Install robot framework tools
 RUN sudo python3 -m pip install --upgrade pip && sudo python3 -m pip install robotframework-lint robotframework-requests
 
 # Clean tools which will be needed no more
-RUN sudo apt-get remove -y git
+# RUN sudo apt-get remove -y git
 
 # Add custom linting bridge between ale and rflint 
 RUN mkdir -p .vim/pack/plugins/start/ale/ale_linters/robot
@@ -36,3 +37,4 @@ COPY doc .vim/pack/plugins/start/vim_robotframework/doc
 
 # Generate tags for doc files, so user can use them out of the box
 RUN sudo vim -c 'helptags .vim/pack/plugins/start/vim_robotframework/doc' -c 'q'
+RUN sudo vim -c 'helptags .vim/pack/plugins/start/vim-gutentags/doc' -c 'q'
