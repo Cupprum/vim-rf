@@ -1,0 +1,11 @@
+Do (List currently available commands):
+  :RFDebug\<CR>
+  Y
+  \<C-W>h
+  P
+
+Expect (check commands):
+  
+  RFCommentLine
+  RFUncommentLine
+  RFDebug
