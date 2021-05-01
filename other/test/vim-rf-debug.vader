@@ -1,11 +1,17 @@
+Given robot (some code):
+  test123
+
 Do (List currently available commands):
   :RFDebug\<CR>
-  Y
+  V
+  G
+  y
   \<C-W>h
   P
 
 Expect (check commands):
-  
+  test123
+
   RFCommentLine
   RFUncommentLine
   RFDebug
