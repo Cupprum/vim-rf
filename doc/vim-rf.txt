@@ -1,4 +1,3 @@
-# /* vim: set filetype=help : */
 *vim-rf* functionality for the robot framework
 
        _               __       _           _          ~
@@ -20,15 +19,33 @@ Includes syntax highlighting, executing tests, and much more!
 ====================================================================
 CONTENTS                                           *vim-rf-contents*
 
-    1. Usage ................ |vim-rf-usage|
-    2. Mappings ............. |vim-rf-mappings|
-    3. License .............. |vim-rf-license|
-    4. Bugs ................. |vim-rf-bugs|
-    5. Contributing ......... |vim-rf-contributing|
-    6. Credits .............. |vim-rf-credits|
+    1. Dependecies........... |vim-rf-dependecies|
+    2. Usage ................ |vim-rf-usage|
+    3. Mappings ............. |vim-rf-mappings|
+    4. License .............. |vim-rf-license|
+    5. Bugs ................. |vim-rf-bugs|
+    6. Contributing ......... |vim-rf-contributing|
+    7. Credits .............. |vim-rf-credits|
 
 ====================================================================
-Section 1: Usage                                      *vim-rf-usage*
+Section 1: Dependecies                          *vim-rf-dependecies*
+
+It is possible to use this pluggin without any external dependecies.
+That being said, its functionality would be pretty incompetent.
+On start of Vim, vim-rf tests for present external dependecies.
+After that, vim-rf creates command bindings to only those commands,
+which could be executed without any problem.
+Here is a list of all external dependecies.
+
+    - python -> https://www.python.org/downloads/
+    - robot -> https://pypi.org/project/robotframework/
+    - rflint -> https://pypi.org/project/robotframework-lint/
+
+If you would like to list commmands that are currently available
+for your use, look for command :RFDebug in |vim-rf-usage|.
+
+====================================================================
+Section 2: Usage                                      *vim-rf-usage*
 
 This plugin will automatically provide syntax highlighting for
 Robot Framework files (files ending in .robot).
@@ -38,31 +55,31 @@ functionality when working with Robot Framework
 
 The :RFTestCase command finds out name of current Test Case and
 executes it.
-Example: >
-
+Example:
+>
     :RFTestCase
-
+<
 All you need to do is place your cursor on the name of the Test
 Case or somewhere inside the scope of the Test Case and |vim-rf|
 will take care of the rest. After Test Case execution, the output
 will be printed in scratch buffer created as a new split.
 It is possible not to execute Test Case, but just to print its name
-by adding -l to the command like this: >
-
+by adding -l to the command like this:
+>
     :RFTestCase -l
-
+<
 The :RFTestFile command executes all tests in current file. Output
 of executed tests is then displayed in new scratch buffer, which is
 created as a split.
-Example: >
-
+Example:
+>
     :RFTestFile
-
+<
 It is also possible to list all names of Test Cases before the
-execution by specifying flag -l like this: >
-    
+execution by specifying flag -l like this:
+>
     :RFTestFile -l
-
+<
 In order for listing Test Cases
 properly, it is necessary to have python installed in path. Also
 this previously mentioned version of python must have robot
@@ -71,46 +88,54 @@ framework with pip.
 
 Robot Framework allows its users to create Test Suites by
 collecting similar Test Files in Folders or Directories. |vim-rf|
-allows running all Test Cases from current Test Suite by: >
-
+allows running all Test Cases from current Test Suite by:
+>
     :RFTestDir
-
+<
 Output of executed Test Cases is then displayed in new scratch
 buffer, which is created as a split.
-It is also possible just to list names of Test Cases by: >
-
+It is also possible just to list names of Test Cases by:
+>
     :RFTestDir -l
-
+<
 List of Test Case names will be displayed then in new scratch
 buffer, which is created as a split.
 
-If you have rflint (Robot Framework Lint) installed you can use command
-:RFLint to print all Errors and Warnings in new scratch buffer.
-Example: >
-    
+If you have rflint (Robot Framework Lint) installed you can use
+command :RFLint to print all Errors and Warnings in new scratch
+buffer.
+Example:
+>
     :RFLint
-
+<
 Command :RFCommentLine works in normal and also visual mode and
 is used to comment current line or highlighted block of lines.
-Example normal mode: >
-
+Example normal mode:
+>
     :RFCommentLine
-
-Example visual mode: >
-
+<
+Example visual mode:
+>
     :'<,'>RFCommentLine
-
+<
 It is also possible to uncomment current lino or highlighted
-block of lines by: >
-
+block of lines by:
+>
     :RFUncommentLine
-
-or: >
-
+<
+or:
+>
     :'<,'>RFUncommentLine
+<
+Command :RFDebug is used for listing all currently available
+commands. It will open scratch buffer in new split which will
+contain list of all available commands.
+>
+    :Debug
+<
 
 ====================================================================
-Section 2: Mappings                                *vim-rf-mappings*
+Section 3: Mappings                                *vim-rf-mappings*
 
 This plugin does not intend to create mappings because it could
 cause overwriting some of users predefined mappings. Because of
@@ -143,12 +168,12 @@ map the mapping to Control slash. This is beacuse of Vim's funny
 way of working with slash character so trust me on this one.
 
 ====================================================================
-Section 3: License                                  *vim-rf-license*
+Section 4: License                                  *vim-rf-license*
 
 Same terms as Vim itself (see |license|)
 
 ====================================================================
-Section 4: Bugs                                        *vim-rf-bugs*
+Section 5: Bugs                                        *vim-rf-bugs*
 
 In case you find some bug please create Github issue here
 https://github.com/Cupprum/VIM-RF-BP/issues.
@@ -160,7 +185,7 @@ Request here https://github.com/Cupprum/VIM-RF-BP/pulls. I will
 gladly look at it.
 
 ====================================================================
-Section 5: Contributing                        *vim-rf-contributing*
+Section 6: Contributing                        *vim-rf-contributing*
 
 Have some fresh ideas how to make this plugin more awesome?
 Amazing!
