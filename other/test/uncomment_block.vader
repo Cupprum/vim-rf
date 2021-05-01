@@ -7,7 +7,10 @@ Given robot (some robot code):
       Dictionary Should Contain Key        ${resp.json()}     id
 
 Do (uncomment second and third line):
-    jVj:RFUncommentLine\<CR>
+  j
+  V
+  j
+  :RFUncommentLine\<CR>
 
 Expect robot (all code should be uncommented):
   Post Request Test

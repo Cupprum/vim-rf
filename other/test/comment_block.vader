@@ -7,7 +7,10 @@ Given robot (some robot code):
       Dictionary Should Contain Key        ${resp.json()}     id
 
 Do (comment block):
-    jVj:RFCommentLine\<CR>
+    j
+    V
+    j
+    :RFCommentLine\<CR>
 
 Expect robot (commented second and third line):
   Post Request Test
