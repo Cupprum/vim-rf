@@ -55,3 +55,4 @@ call ale#linter#Define('robot', {
 \   'command': function('ale_linters#robot#rflint#GetCommand'),
 \   'callback': 'ale_linters#robot#rflint#Handle',
 \})
+
