@@ -1,5 +1,5 @@
 " Purpose: Vim syntax file for Robot Framework
-" Last Change: 22 December 2020
+" Last Change: 7 May 2021
 " Maintainer: Samuel Braniša
 " Language: Robot Framework
 " License: This file is placed in the public domain.
@@ -9,14 +9,6 @@ if exists("b:current_syntax")
 endif
 
 syntax sync minlines=100
-
-" Constant
-" Special
-" Identifier
-" Statement
-" PreProc
-" Type
-
 
 syntax region robotComment start='#' end='$' oneline
 syntax match robotVariableName '\([[:alnum:]_] \{0,1}\)\+' contained
@@ -44,16 +36,17 @@ syntax match robotSettingName '^\(Force\|Default\) Tags' nextgroup=robotBlank
 syntax match robotSettingName '^Suite \(Setup\|Teardown\)' nextgroup=robotBlank
 syntax match robotSettingName '^\(Test\|Task\) \(Setup\|Teardown\|Template\|Timeout\)' nextgroup=robotBlank
 
-" Test Cases
+" Test Cases and Keywords
 syntax match robotStrings '\".\+\"'
 syntax match robotThreeDotsTestCases '\.\.\.' contained
 syntax match robotTestCaseName '^\([[:alnum:]_] \{0,1}\)\+' contained
 syntax match robotTestCaseCall '^[[:blank:]]\+\([[:alnum:]] \{0,1}\)\+' contained
 syntax match robotTestCaseCallAfterVar '[[:blank:]]\+\([[:alnum:]] \{0,1}\)\+' contained
+syntax match robotArguments '\[Arguments\]' contained
 syntax region robotVariableTestCase start='^[[:blank:]]\+\(\$\|%\|@\|&\){' end='}\(=\|\)' contains=robotVariableName,robotComment oneline nextgroup=robotTestCaseCallAfterVar
 
-syntax region robotTestCaseBorders start='^\*\*\* Test Cases \*\*\*' end='\%$'
-    \ contains=robotTestCaseName,robotTestCaseCall,robotSections,robotVariableTestCase,robotVariable,robotThreeDotsTestCases,robotStrings,robotComment
+syntax region robotTestCaseBorders start='^\*\*\* \(Test Cases\|Keywords\) \*\*\*' end='\%$'
+    \ contains=robotTestCaseName,robotTestCaseCall,robotSections,robotVariableTestCase,robotVariable,robotThreeDotsTestCases,robotStrings,robotComment,robotArguments
 
 " --- Normal Standart Libraries
 " * BuiltIn
@@ -183,5 +176,6 @@ highlight default link robotTestCaseCall         Statement
 highlight default link robotTestCaseCallAfterVar Statement
 highlight default link robotThreeDotsTestCases   Type
 highlight default link robotStrings              Statement
+highlight default link robotArguments            Identifier
 
 let b:current_syntax = "robot"
