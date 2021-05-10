@@ -1,4 +1,4 @@
-# vim-rf [![GitHub Actions Status](https://github.com/Cupprum/vim-rf/workflows/test/badge.svg)](https://github.com/Cupprum/vim-rf/actions)
+# vim-rf [![GitHub Actions Status](https://github.com/Cupprum/vim-rf/workflows/vim_robotframework/badge.svg)](https://github.com/Cupprum/vim-rf/actions)
 
 ## Features
 
@@ -41,7 +41,7 @@ Depending on your installation method, you may have to generate the plugin's
 [`help tags`](http://vimhelp.appspot.com/helphelp.txt.html#%3Ahelptags)
 manually (e.g. `:helptags ALL`).
 
-Would like to try this plugin before installation inside Vim environment? Now you can thanks to Docker. Just run `docker run --rm -it vimrobotframework/vim_rf:0.1.0 bash` and try it out. If you would like to edit Robot Framework Test Suite with this Contanier, just specify flag `-v $(pwd)/rf_project_directory:/rf_project_directory` to mount specific folder.
+Would you like to try this plugin before installation inside Vim environment? Now you can thanks to Docker. Just run `docker run --rm -it vimrobotframework/vim_rf:0.1.0 bash` and try it out. If you would like to edit Robot Framework Test Suite with this Contanier, just specify flag `-v $(pwd)/rf_project_directory:/rf_project_directory` to mount specific folder.
 
 ## Contributing
 
