@@ -51,7 +51,7 @@ This plugin will automatically provide syntax highlighting for
 Robot Framework files (files ending in .robot).
 
 It is also a filetype plugin, so it extends Vim with new super cool
-functionality when working with Robot Framework
+functionality when working with Robot Framework.
 
 The :RFTestCase command finds out name of current Test Case and
 executes it.
@@ -131,7 +131,7 @@ Command :RFDebug is used for listing all currently available
 commands. It will open scratch buffer in new split which will
 contain list of all available commands.
 >
-    :Debug
+    :RFDebug
 <
 
 ====================================================================
