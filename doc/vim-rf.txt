@@ -25,7 +25,6 @@ CONTENTS                                           *vim-rf-contents*
     4. License .............. |vim-rf-license|
     5. Bugs ................. |vim-rf-bugs|
     6. Contributing ......... |vim-rf-contributing|
-    7. Credits .............. |vim-rf-credits|
 
 ====================================================================
 Section 1: Dependecies                          *vim-rf-dependecies*

@@ -51,4 +51,4 @@ or design decisions out of the way first.
 
 ## License
 
-The BSD 3-Clause License - see [`LICENSE`](LICENSE) for more details
+Same as Vim, for more details see ['LICENSE'](https://www.gnu.org/licenses/vim-license.txt).
