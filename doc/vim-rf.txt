@@ -175,12 +175,12 @@ Same terms as Vim itself (see |license|)
 Section 5: Bugs                                        *vim-rf-bugs*
 
 In case you find some bug please create Github issue here
-https://github.com/Cupprum/VIM-RF-BP/issues.
+https://github.com/Cupprum/vim-rf/issues.
 If you are not comfortable creating issues, you can send mail to
 branisa.samuel@icloud.com about the bug and i will create this
 issue for you.
 If you already found way how to fix this bug, please create a Pull
-Request here https://github.com/Cupprum/VIM-RF-BP/pulls. I will
+Request here https://github.com/Cupprum/vim-rf/pulls. I will
 gladly look at it.
 
 ====================================================================
@@ -189,6 +189,6 @@ Section 6: Contributing                        *vim-rf-contributing*
 Have some fresh ideas how to make this plugin more awesome?
 Amazing!
 Feel free to create Pull Request here
-https://github.com/Cupprum/VIM-RF-BP/pulls. I would really like
+https://github.com/Cupprum/vim-rf/pulls. I would really like
 to see your code!
-https://github.com/Cupprum/VIM-RF-BP
+https://github.com/Cupprum/vim-rf
